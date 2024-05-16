@@ -1,0 +1,10 @@
+.loginOuter{
+    width: 100%;
+    height: 100%;
+}
+
+.loginInner{
+    width: 70em;
+    height: 35em;
+    border: 2px solid red;
+}

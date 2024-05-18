@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose');
 
 const messageSchema = mongoose.Schema(
     {
@@ -6,6 +6,9 @@ const messageSchema = mongoose.Schema(
             type: String
         },
         senderId: {
+            type: String
+        },
+        receiverId: {
             type: String
         },
         message: {

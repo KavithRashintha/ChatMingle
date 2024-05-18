@@ -1,16 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-import ChatRoute from "./routes/chatRoute";
+require('dotenv').config();
+const port=process.env.PORT;
+
+const ChatRoute = require('./routes/chatRoute');
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/ChatMingle').then(()=>{
-    app.listen(3000, ()=>{
-        console.log("Server is running");
-    })
-}).catch((error=>{
-    console.log(error)
-}))
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.use("/chat", ChatRoute)
+mongoose.connect('mongodb://127.0.0.1:27017/ChatMingle').then(() => {
+    app.listen(port , ()=>{
+        console.log(`ChatMingle server is running to port : ${port}`);
+    })
+}).catch((error) => {
+    console.log(error);
+});
+
+app.use('/chat', ChatRoute);

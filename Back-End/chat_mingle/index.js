@@ -6,6 +6,7 @@ const port=process.env.PORT;
 
 const UserRoute = require('./routes/userRoutes');
 const ChatRoute = require('./routes/chatRoute');
+const MessageRoute = require('./routes/messageRoute');
 
 const app = express();
 
@@ -22,3 +23,4 @@ mongoose.connect('mongodb://127.0.0.1:27017/ChatMingle').then(() => {
 
 app.use('/user', UserRoute);
 app.use('/chat', ChatRoute);
+app.use('/message', MessageRoute);

@@ -21,8 +21,14 @@
     font-size: 3em;
 }
 
-p{
+.loginFormTopic p{
     font-family: Inter;
+    line-height: 1.5;
+}
+
+.signUpLink p{
+    font-family: Inter;
+    margin: 0 0.275em 0 0;
 }
 
 

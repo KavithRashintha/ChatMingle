@@ -1,17 +1,17 @@
-.loginOuter{
+.signUpnOuter{
     width: 100%;
     height: 100%;
 }
 
-.loginAnimation{
+.signUpAnimation{
     height: 100%;
 }
 
-.loginForm{
+.signupForm{
     background-color: aliceblue;
 }
 
-.loginFormText{
+.signUpFormText{
     margin: 3.5em 0 1em 0;
 }
 

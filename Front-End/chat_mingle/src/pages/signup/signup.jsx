@@ -1,5 +1,6 @@
 import './signup.css';
 import Lottie from "lottie-react";
+import { Link } from 'react-router-dom';
 import signupAnimation from '../../assets/signup.json';
 
 function SignUp() {
@@ -124,9 +125,9 @@ function SignUp() {
                             <p className="font-light text-blue-600 mr-1">
                                 Already have an account?
                             </p>
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                LogIn
-                            </a>
+                            <Link to='/' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Login
+                            </Link>
                         </div>
                     </form>
                 </div>

@@ -2,8 +2,37 @@ import './signup.css';
 import Lottie from "lottie-react";
 import { Link } from 'react-router-dom';
 import signupAnimation from '../../assets/signup.json';
+import { useState } from "react";
+import axios from "axios";
 
 function SignUp() {
+    const [user, setUser] = useState({
+        userName: '',
+        password: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        mobileNumber: ''
+    });
+
+    const handleSignUp = (event) => {
+        setUser({
+            ...user,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:3000/user/register', user) // Ensure this matches your backend server URL
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     return (
         <div className="flex min-h-screen">
             <div className="hidden lg:flex lg:w-2/5 justify-center items-center p-8">
@@ -18,70 +47,72 @@ function SignUp() {
                         <h1 className="lg:mt-8 text-center font-extrabold text-gray-900 text-2xl lg:text-10xl leading-tight mb-4">
                             Welcome to ChatMingle
                         </h1>
-                        {/*<p className="mt-2 text-center text-sm text-gray-600 mb-4">
-                            Please, Insert your user credentials properly for signup to ChatMingle.
-                        </p>*/}
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-4">
                             <div>
                                 <label htmlFor="username" className="sr-only">Username</label>
                                 <input
-                                    id="username"
-                                    name="username"
+                                    id="userName"
+                                    name="userName"
                                     type="text"
-                                    autoComplete="username"
+                                    autoComplete="userName"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Enter username"
+                                    onChange={handleSignUp}
                                 />
                             </div>
                             <div>
                                 <label htmlFor="first-name" className="sr-only">First Name</label>
                                 <input
-                                    id="first-name"
-                                    name="first-name"
+                                    id="firstName"
+                                    name="firstName"
                                     type="text"
-                                    autoComplete="given-name"
+                                    autoComplete="firstName"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Enter first name"
+                                    onChange={handleSignUp}
                                 />
                             </div>
                             <div>
                                 <label htmlFor="last-name" className="sr-only">Last Name</label>
                                 <input
-                                    id="last-name"
-                                    name="last-name"
+                                    id="lastName"
+                                    name="lastName"
                                     type="text"
-                                    autoComplete="family-name"
+                                    autoComplete="lastName"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Enter last name"
+                                    onChange={handleSignUp}
                                 />
                             </div>
                             <div>
                                 <label htmlFor="mobile-number" className="sr-only">Mobile Number</label>
                                 <input
-                                    id="mobile-number"
-                                    name="mobile-number"
+                                    id="mobileNumber"
+                                    name="mobileNumber"
                                     type="tel"
-                                    autoComplete="tel"
+                                    autoComplete="mobileNumber"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Enter mobile number"
+                                    onChange={handleSignUp}
                                 />
                             </div>
                             <div>
                                 <label htmlFor="email-address" className="sr-only">Email address</label>
                                 <input
-                                    id="email-address"
+                                    id="email"
                                     name="email"
                                     type="email"
                                     autoComplete="email"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Enter email"
+                                    onChange={handleSignUp}
                                 />
                             </div>
                             <div>
@@ -94,6 +125,7 @@ function SignUp() {
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Enter password"
+                                    onChange={handleSignUp}
                                 />
                             </div>
                         </div>
@@ -107,7 +139,7 @@ function SignUp() {
                                     className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                                 />
                                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                    I agree the terms and the conditions of the ChatMingle
+                                    I agree to the terms and conditions of ChatMingle
                                 </label>
                             </div>
                         </div>

@@ -3,12 +3,14 @@ import {useEffect, useState} from "react";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import Conversation from "../../components/conversation.jsx";
+import ChatBox from "../../components/chatBox.jsx";
 
 function Chat(){
 
     const token = localStorage.getItem('token');
 
     const [chats, setChats] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -59,7 +61,7 @@ function Chat(){
 
                     <div className="chatList h-[36.5em] w-[20em]">
                         {chats.map((chat) => (
-                            <div className="chatItem" key={chat._id}>
+                            <div className="chatItem" key={chat._id} onClick={()=> setCurrentChat(chat)}>
                                 <Conversation
                                     data={chat}
                                     currentUser={localStorage.getItem('id')}
@@ -71,7 +73,7 @@ function Chat(){
                 </div>
 
                 <div className="chatRightSide w-full">
-                    <h2>Hello</h2>
+                    <ChatBox chat={currentChat} currentUser={localStorage.getItem('id')}></ChatBox>
                 </div>
 
             </div>

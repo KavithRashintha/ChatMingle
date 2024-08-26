@@ -27,10 +27,12 @@ const Conversation = ({ data, currentUser }) => {
     }, []);
 
     return (
-        <div className="p-4 m-2 w-68 bg-white bg-opacity-60 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="p-4 m-2 w-68 bg-white bg-opacity-60 rounded-lg shadow-lg transition-all duration-300 transform hover:bg-opacity-70 hover:shadow-2xl hover:-translate-y-0.25">
             <div className="text-left font-inter">
-                <span className="block text-[20px] font-medium text-blue-800">{userData?.firstName} {userData?.lastName}</span>
-                <span className="block text-[12px] font-normal text-gray-500">Online</span>
+                <span className="block text-[20px] font-medium text-blue-800">
+                    {userData?.firstName} {userData?.lastName}
+                </span>
+                <span className="block text-sm font-normal text-gray-500">Online</span>
             </div>
         </div>
     );

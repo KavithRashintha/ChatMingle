@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
         const user = await newUser.save();
         const token = jwt.sign(
             { userName: user.userName, id: user._id },
-            process.env.SECRET_KEY, // Ensure this matches your environment variable
+            "ChatMingle", // Ensure this matches your environment variable
             { expiresIn: "1h" }
         );
 
@@ -36,31 +36,38 @@ const registerUser = async (req, res) => {
     }
 };
 
-const loginUser = async(req, res)=>{
-    UserModel.findOne({ email: req.body.email }).then(result=>{
-        if(result){
-            bcrypt.compare(req.body.password, result.password, function (error, result) {
-                if(result){
-                    const token = jwt.sign(
-                        {
-                            id: result._id,
-                            userName : result.userName,
-                            email: result.email,
-                            mobileNumber: result.mobileNumber
-                        },
-                        process.env.SECRET_KEY
-                    )
-                    res.status(201).json({message: "Logged In", token: token});
-                }
-                if(!result){
-                    res.status(401).json({message: "Unauthorized User !"});
-                }
-            })
-        }else{
-            res.status(404).json({message: "User Not Found"})
+const loginUser = async (req, res) => {
+    try {
+        const user = await UserModel.findOne({ email: req.body.email });
+
+        if (!user) {
+            return res.status(404).json({ message: "User Not Found" });
         }
-    })
-}
+
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({ message: "Unauthorized User!" });
+        }
+
+        const token = jwt.sign(
+            {
+                userName: user.userName,
+                id: user._id,
+                email: user.email,
+                mobileNumber: user.mobileNumber
+            },
+            "ChatMingle", // Ensure this matches your environment variable
+            { expiresIn: "1h" }
+        );
+
+        res.status(201).json({ message: "Logged In", token: token });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 
 module.exports = {
     registerUser,

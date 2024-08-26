@@ -1,9 +1,8 @@
 import './chat.css';
-import {useState} from "react";
 
 function Chat(){
 
-    const [chats, setChats] = useState([]);
+    /*const [chats, setChats] = useState([]);*/
     return(
         <div>
 

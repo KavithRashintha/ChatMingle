@@ -37,7 +37,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async(req, res)=>{
-    UserModel.findOne({userName:req.body.userName}).then(result=>{
+    UserModel.findOne({ email: req.body.email }).then(result=>{
         if(result){
             bcrypt.compare(req.body.password, result.password, function (error, result) {
                 if(result){

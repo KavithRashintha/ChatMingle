@@ -53,6 +53,29 @@ const ChatBox = ({ chat, currentUser }) => {
         setNewMessage(newMessage);
     }
 
+    const handleSend = async (e)=> {
+        e.preventDefault();
+        const message = {
+            senderId: currentUser,
+            message: newMessage,
+            chatId: chat._id,
+
+        }
+
+        try{
+            const { data } = await axios.post('http://localhost:3000/message/', message, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            setMessages([...messages, data]);
+            setNewMessage('');
+        }catch (error){
+            console.log(error);
+        }
+    }
+
     if (!chat) {
         return (
             <div className="userConversation flex flex-col h-full font-inter justify-center items-center">
@@ -82,8 +105,8 @@ const ChatBox = ({ chat, currentUser }) => {
                         key={message._id}
                         className={`max-w-[400px] w-max p-2 mb-2 rounded-lg ${
                             message.senderId === currentUser
-                                ? "bg-gradient-to-r from-[#D3EBF9] to-[#66C4FF] text-right ml-auto pl-2 pr-2"
-                                : "bg-gradient-to-r from-[#ff836f] to-[#fecdc2] text-left mr-auto pl-2 pr-2"
+                                ? "bg-gradient-to-r from-[#D3EBF9] to-[#66C4FF] text-right ml-auto pl-2 pr-2 mr-[12px]"
+                                : "bg-gradient-to-r from-[#A88BEB] to-[#F8CEEC] text-left mr-auto pl-2 pr-2 ml-[12px]"
                         }`}
                         style={{ width: 'max-content' }}
                     >
@@ -123,6 +146,7 @@ const ChatBox = ({ chat, currentUser }) => {
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.background = 'linear-gradient(45deg, #42A5F5, #3747D6)'}
                     onMouseLeave={(e) => e.currentTarget.style.background = 'linear-gradient(45deg, #2196F3, #1E40AF)'}
+                    onClick={handleSend}
                 >
                     Send
                 </div>

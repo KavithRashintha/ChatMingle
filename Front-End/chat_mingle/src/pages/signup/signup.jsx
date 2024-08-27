@@ -24,7 +24,7 @@ function SignUp() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/user/register', user) // Ensure this matches your backend server URL
+        axios.post('http://localhost:3000/user/register', user)
             .then(response => {
                 console.log(response);
             })
@@ -127,20 +127,6 @@ function SignUp() {
                                     placeholder="Enter password"
                                     onChange={handleSignUp}
                                 />
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                    I agree to the terms and conditions of ChatMingle
-                                </label>
                             </div>
                         </div>
 

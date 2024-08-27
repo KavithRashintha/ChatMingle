@@ -1,9 +1,10 @@
 import './chat.css';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import Conversation from "../../components/conversation.jsx";
 import ChatBox from "../../components/chatBox.jsx";
+import {io} from 'socket.io-client';
 
 function Chat(){
 
@@ -12,6 +13,22 @@ function Chat(){
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [user, setUser] = useState(null);
+    const [onlineUsers, setOnlineUsers] = useState([]);
+
+    const socket = useRef();
+
+    useEffect(() => {
+        const id = localStorage.getItem('id');
+        console.log(id);
+        if (user) {
+            socket.current = io('http://localhost:8800');
+            socket.current.emit('new-user-add', id);
+            socket.current.on('get-users', (users) => {
+                setOnlineUsers(users);
+                console.log(onlineUsers);
+            });
+        }
+    }, [user]);
 
     useEffect(() => {
         if (token) {

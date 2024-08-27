@@ -11,8 +11,16 @@
   },
   "dependencies": {
     "antd": "^5.17.2",
+    "axios": "^1.7.2",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "lottie-react": "^2.4.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-input-emoji": "^5.9.0",
+    "react-router-dom": "^6.23.1",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

@@ -3,8 +3,32 @@
     height: 100%;
 }
 
-.loginInner{
-    width: 70em;
-    height: 35em;
-    border: 2px solid red;
+.loginAnimation{
+    height: 100%;
 }
+
+.loginForm{
+    background-color: aliceblue;
+}
+
+.loginFormText{
+    margin: 3.5em 0 2em 0;
+}
+
+.loginFormTopic h1{
+    font-family: Inter;
+    color: #6CD2D3;
+    font-size: 3em;
+}
+
+.loginFormTopic p{
+    font-family: Inter;
+    line-height: 1.5;
+}
+
+.signUpLink p{
+    font-family: Inter;
+    margin: 0 0.275em 0 0;
+}
+
+

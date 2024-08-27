@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const chatSchema = mongoose.Schema(
     {
@@ -7,7 +7,7 @@ const chatSchema = mongoose.Schema(
         },
     },
     {
-        timeStamp: true,
+        timestamps: true,
     }
 )
 

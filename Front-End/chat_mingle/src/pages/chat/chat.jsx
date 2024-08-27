@@ -55,8 +55,11 @@ function Chat(){
 
                 <div className="chatLeftSide w-4/12 flex flex-col items-center">
 
-                    <div className="chatListTopic w-full h-16 flex flex-col justify-center text-center">
-                        <h1>ChatMingle</h1>
+                    <div className="chatListTopic w-full h-16 flex items-center justify-center text-center">
+                        <div className="flex items-center justify-center">
+                            <img src="/chat-icon.png" alt="Chat Icon" className="w-10 h-10 mr-4 mt-[60px]" />
+                            <h1>ChatMingle</h1>
+                        </div>
                     </div>
 
                     <div className="chatList h-[36.5em] w-[20em]">

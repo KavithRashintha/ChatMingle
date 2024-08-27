@@ -53,6 +53,16 @@ const ChatBox = ({ chat, currentUser }) => {
         setNewMessage(newMessage);
     }
 
+    if (!chat) {
+        return (
+            <div className="userConversation flex flex-col h-full font-inter justify-center items-center">
+                <span className="text-[18px] text-gray-500">
+                    Click the chat to start the conversation
+                </span>
+            </div>
+        );
+    }
+
     return (
         <div className="userConversation flex flex-col h-full font-inter">
             <div className="chatHeader w-full bg-[#e8f6ff] pl-[22px] pt-[28px] pb-[20px] mb-[12px]">
@@ -101,6 +111,21 @@ const ChatBox = ({ chat, currentUser }) => {
                     onChange={handleChange}
                     className="flex-grow"
                 />
+                <div
+                    className="sendButton px-7 py-2.5 text-white font-inter"
+                    style={{
+                        background: 'linear-gradient(45deg, #2196F3, #1E40AF)',
+                        borderRadius: '6px',
+                        marginLeft: '12px',
+                        marginRight: '12px',
+                        fontSize: '12px',
+                        transition: 'background 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'linear-gradient(45deg, #42A5F5, #3747D6)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'linear-gradient(45deg, #2196F3, #1E40AF)'}
+                >
+                    Send
+                </div>
             </div>
         </div>
     );
